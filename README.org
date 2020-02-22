@@ -1,0 +1,21 @@
+#+TITLE: nkea.el
+
+Next Killer Email App.
+
+nkea is a modest attempt at wrapping a [[https://superhuman.com/][superhuman]] like interface over [[https://www.djcbsoftware.nl/code/mu/mu4e.html][mu4e]] and
+[[https://orgmode.org/][Org mode]].
+
+** General idea
+In nkea, we work with an /item/ defined by an actionable. You run a time bounded
+session to go through the items one by one and take actions on them. In general,
+the following actions are possible:
+
+1. Snooze
+2. Reply
+3. Reply and snooze
+4. Delete
+5. Archive
+
+All items are backed by an email (or email thread). Items are stored either in
+Maildir directly or linked with a Org mode file for scheduling and general meta
+information.
