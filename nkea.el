@@ -29,7 +29,76 @@
 
 ;;; Code:
 
+(require 'mu4e)
+(require 'org)
+(require 'eieio)
+(require 'cl-lib)
 
+(defgroup nkea nil
+  "Customization group for nkea."
+  :group 'convenience)
+
+(defcustom nkea-org-file nil
+  "Org file to keep scheduling information for nkea items in."
+  :group 'nkea)
+
+(defclass nkea-item ()
+  ()
+  "Base nkea item."
+  :abstract t)
+
+(defclass nkea-mu4e-item (nkea-item)
+  ()
+  "nkea item connected to an email via mu4e.")
+
+;;; Actions that can be taken
+
+(cl-defmethod nkea-snooze ((it nkea-item))
+  "Snooze the item.")
+
+(cl-defmethod nkea-share ((it nkea-item))
+  "Generic sharing action for item.")
+
+(cl-defmethod nkea-act ((it nkea-item))
+  "Default action for item.")
+
+(cl-defmethod nkea-delete ((it nkea-item))
+  "Delete action.")
+
+(cl-defmethod nkea-archive ((it nkea-item))
+  "Archive action.")
+
+;;; Item farming
+;; TODO: collect items, use priority
+
+(defun nkea-items-from-org ()
+  "Collect todo items from nkea org file. The items are backed by
+mu4e mail links."
+  ())
+
+(defun nkea-items-from-mu4e (mu-query)
+  "Return items from mu4e using given mu-query."
+  ())
+
+;;; Session
+;; TODO: timings, navigation
+
+(defclass nkea-session ()
+  ((time-limit :initarg :time-limit)
+   (items :initarg items)
+   (timer)))
+
+(cl-defmethod nkea-display ((it nkea-item))
+  "Display given item in buffer")
+
+(defun nkea-next ())
+
+(defun nkea-prev ())
+
+(defun nkea-begin ()
+  (interactive))
+
+(defun nkea-quit ())
 
 (provide 'nkea)
 
